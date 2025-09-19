@@ -10,7 +10,22 @@
     "test:unit": "jest",
     "setup": "node scripts/setup.js",
     "lint": "eslint *.js scripts/*.js",
-    "format": "prettier --write *.js scripts/*.js"
+    "format": "prettier --write *.js scripts/*.js",
+    "master": "node master-agent.js start",
+    "master:stop": "node master-agent.js stop",
+    "master:restart": "node master-agent.js restart",
+    "master:status": "node master-agent.js status",
+    "master:deploy": "node master-agent.js deploy",
+    "master:income": "node master-agent.js income",
+    "master:diagnose": "node master-agent.js diagnose",
+    "master:debug": "node master-agent.js debug",
+    "master:fix": "node master-agent.js fix",
+    "empire": "node master-agent.js start",
+    "empire:income": "node master-agent.js income",
+    "empire:deploy": "node master-agent.js deploy",
+    "empire:diagnose": "node master-agent.js diagnose",
+    "empire:debug": "node master-agent.js debug",
+    "empire:fix": "node master-agent.js fix"
   },
   "keywords": [
     "mcp",

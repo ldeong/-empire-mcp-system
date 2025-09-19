@@ -1,6 +1,76 @@
 # SINA Empire MCP System
 
-A comprehensive MCP (Model Context Protocol) ecosystem for unlimited scaling of Claude API calls into Cloudflare Workers with advanced resilience patterns, voice command parsing, context management, webhook integration, and orchestration engine.
+A comprehensive MCP (Model Context Protocol) ecosystem for unlimited scaling of Claude API calls into Cloudflare Workers with advanced resilience patterns, voice command parsing, context management, webhook integration, orchestration engine, and **Master Agent command center**.
+
+## 🏛️ Master Agent - Empire Command Center
+
+The **Master Agent** is the central orchestrator that commands and builds all other agents in the Empire ecosystem. It provides unified control, monitoring, and deployment capabilities.
+
+### Quick Start with Master Agent
+
+```bash
+# Start the entire Empire ecosystem
+npm run empire
+
+# Check income and progress
+npm run empire:income
+
+# Deploy to Cloudflare Workers
+npm run empire:deploy
+
+# Show detailed agent status
+npm run master:status
+
+# Stop all agents
+npm run master:stop
+```
+
+### Master Agent Features
+
+- **🎯 Unified Command Center**: Single point of control for all Empire agents
+- **📊 Real-time Dashboard**: Web interface at `http://localhost:3001`
+- **🔍 Health Monitoring**: Automatic health checks and auto-restart capabilities
+- **📝 Centralized Logging**: All agent logs in `/logs` directory with timestamps
+- **🚀 Auto-deployment**: One-command Cloudflare Workers deployment
+- **💰 Income Dashboard**: Real-time earnings tracking and milestone progress
+- **🔄 Graceful Lifecycle**: Clean startup, shutdown, and restart operations
+
+### Agent Registry
+
+The Master Agent manages these services:
+
+| Agent | Port | Description | Auto-Start |
+|-------|------|-------------|------------|
+| `payment-monitor` | - | Monero payment detection & celebrations | ✅ |
+| `escrow-micro` | 3500 | Micro/mid-tier escrow services | ✅ |
+| `escrow-enterprise` | 3600 | High-value enterprise escrow | ✅ |
+| `mcp-server` | 3000 | Main MCP ecosystem server | ✅ |
+| `income-service` | 3003 | Income analytics (optional) | ❌ |
+
+### Master Agent Commands
+
+```bash
+# Full command syntax
+node master-agent.js <command>
+
+# Available commands:
+node master-agent.js start     # Start all agents
+node master-agent.js stop      # Stop all agents
+node master-agent.js restart   # Restart all agents
+node master-agent.js status    # Show agent status
+node master-agent.js deploy    # Deploy to Cloudflare
+node master-agent.js income    # Show income dashboard
+node master-agent.js help      # Show help
+```
+
+### Master Agent API Endpoints
+
+```http
+GET http://localhost:3001/           # Master status
+GET http://localhost:3001/health     # Health check
+GET http://localhost:3001/agents     # Agent details
+POST http://localhost:3001/agents/:name/restart  # Restart specific agent
+```
 
 ## 🚀 Features
 

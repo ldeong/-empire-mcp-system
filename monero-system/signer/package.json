@@ -1,0 +1,31 @@
+{
+  "name": "empire-monero-signer",
+  "version": "1.0.0",
+  "description": "Secure Monero wallet signer for Empire income system",
+  "main": "signer-service.js",
+  "scripts": {
+    "start": "node signer-service.js",
+    "create-wallet": "node wallet-create.js",
+    "watch": "node watcher.js",
+    "test": "node test-signer.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.21.2",
+    "helmet": "^7.0.0",
+    "monero-ts": "^0.9.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "monero",
+    "cryptocurrency",
+    "income",
+    "anonymous",
+    "blockchain"
+  ],
+  "author": "Empire System",
+  "license": "PRIVATE"
+}
