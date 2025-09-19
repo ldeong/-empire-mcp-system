@@ -430,3 +430,47 @@ For support and questions:
 ---
 
 **Built with ❤️ for the SINA Empire ecosystem**
+
+## ⚡ 30-Minute Cash Blitz (Phase 1 Micro Earnings)
+
+Rapid-fire micro-service monetization layer to generate the first $200 in under an hour, feeding momentum into higher-ticket and enterprise escrow funnels.
+
+### Scripts
+| Script | Purpose |
+|--------|---------|
+| `micro-offer-blitz.js` | Generates 10 rotating micro-offer templates (Reddit / Discord / Twitter) with tracking refs |
+| `simple-payment-monitor.js` | Monitors Monero addresses (stagenet + mainnet) and now logs income + updates `MICRO-PROGRESS.md` |
+| `record-payment.js` | Manually record (or backfill) a payment event for progress simulation/testing |
+| `blitz-launch.sh` | 30-minute orchestrated posting + escalation playbook |
+| `instant-escrow-system.js` | Pay-first escrow service API (micro → mid-tier) |
+| `enterprise-escrow-system.js` | $5K–$22K enterprise automation escrow catalog |
+
+### Quick Use
+```bash
+# Generate offer posts
+node micro-offer-blitz.js | less
+
+# Start payment monitor (run in its own terminal)
+node simple-payment-monitor.js
+
+# Launch structured 30-min blitz
+./blitz-launch.sh | less
+
+# Simulate a micro payment (for testing UI & progress)
+node record-payment.js --network mainnet --xmr 0.10 --type micro-offer --note SEC-AUDIT-sample
+
+# Watch micro earnings progress
+watch -n 5 'grep -m3 "Current Total" MICRO-PROGRESS.md; grep "Progress:" -m1 MICRO-PROGRESS.md'
+```
+
+### Phase 1 Targets
+- Milestones: $25 / $50 / $75 / $100 / $125 / $150 / $175 / $200
+- After $200 → pivot to enterprise escrow ($5K+ catalog)
+
+### Principles
+- Scarcity: one active slot per micro-offer.
+- Speed: deliver inside stated time window (15–30 min).
+- Conversion: escalate to higher-value after first 2 closes.
+- Integrity: no fabricated payments; only real or flagged test entries.
+
+---

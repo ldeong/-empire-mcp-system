@@ -2,22 +2,34 @@ const express = require('express');
 const path = require('path');
 const { exec } = require('child_process');
 const { SinaMCPManager } = require('./mcp-ecosystem-manager');
+
+// Import the Master Control System
+const SinaEmpireMasterControl = require('./sina-empire-master-control.js').default;
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Initialize MCP Ecosystem Manager
+// Initialize MCP Ecosystem Manager and Master Control
 const mcpManager = new SinaMCPManager();
+const masterControl = new SinaEmpireMasterControl();
 
 app.use(express.json());
 // Serve static PWA files from public/
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-  res.send('SINA Empire CLI + PWA Server Running');
+  res.send('SINA Empire CLI + PWA Server Running - Master Control Active');
 });
 
 app.get('/health', (req, res) => {
-  res.json({ status: 'healthy', timestamp: new Date().toISOString() });
+  res.json({ 
+    status: 'healthy', 
+    timestamp: new Date().toISOString(),
+    master_control: 'active',
+    empire_workers: 17,
+    empire_databases: 9,
+    empire_kv_namespaces: 19
+  });
 });
 
 // Auto-commit functionality
@@ -56,7 +68,7 @@ function runCodingAgentTrigger(taskType, options = {}) {
 
 app.post('/mcp/voice', async (req, res) => {
   const { command, sessionId } = req.body || {};
-  console.log('Voice request', { command, sessionId });
+  console.log('🎯 Empire Voice Command:', { command, sessionId });
 
   let response = {};
   let tts = `Processing ${command} for SINA Empire`;
@@ -68,8 +80,35 @@ app.post('/mcp/voice', async (req, res) => {
   const cmd = command.toLowerCase();
 
   try {
-    // MCP Ecosystem commands
-    if (cmd.includes('mcp') || cmd.includes('cloudflare') || cmd.includes('github') || cmd.includes('asana')) {
+    // MASTER EMPIRE COMMANDS - Route to Master Control System
+    if (cmd.includes('empire') || cmd.includes('status') || cmd.includes('revenue') || 
+        cmd.includes('workers') || cmd.includes('database') || cmd.includes('crypto') ||
+        cmd.includes('fix stripe') || cmd.includes('wallet')) {
+      
+      console.log('🌟 Processing with Master Control System...');
+      const empireResult = await masterControl.processEmpireCommand(command, sessionId);
+
+      if (empireResult.success) {
+        response = {
+          empire: empireResult.result,
+          status: 'success',
+          master_control: 'active'
+        };
+        tts = `Empire command completed. ${empireResult.result?.action || 'Status updated'}`;
+      } else {
+        response = {
+          empire: {
+            error: empireResult.error,
+            suggestions: empireResult.suggestions
+          },
+          status: 'error',
+          master_control: 'active'
+        };
+        tts = `Empire command failed: ${empireResult.error}`;
+      }
+    }
+    // MCP Ecosystem commands - Use existing system
+    else if (cmd.includes('mcp') || cmd.includes('cloudflare') || cmd.includes('github') || cmd.includes('asana')) {
       console.log('🔗 Processing MCP command...');
 
       const mcpResult = await mcpManager.processVoiceCommand(command, sessionId);
