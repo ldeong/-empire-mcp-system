@@ -263,6 +263,133 @@ curl http://localhost:3000/mcp/analytics?timeframe=24h
 3. Update voice command parser
 4. Add webhook events
 
+### Development / Restart Codespace
+
+The MCP system includes a comprehensive Codespaces helper system with self-healing capabilities for development environments.
+
+#### Prerequisites
+- **GitHub CLI (gh)**: Required for container restart functionality
+- **Node.js 18+**: For running MCP server and helper scripts
+- **npm**: For dependency management
+
+#### Quick Start Commands
+
+```bash
+# Complete development cycle with health checks and auto-recovery
+node scripts/dev-helper.js run
+
+# Start continuous health monitoring
+node scripts/dev-helper.js monitor
+
+# Manual health check
+node scripts/dev-helper.js health
+
+# Get detailed system status
+node scripts/dev-helper.js status
+
+# Restart entire Codespace environment
+./scripts/restart-codespace.sh
+
+# Skip container restart (faster for development)
+./scripts/restart-codespace.sh --skip-container
+```
+
+#### Available Scripts
+
+**`scripts/restart-codespace.sh`** (Executable)
+- Stops any running MCP dev server processes
+- Restarts Codespace container using GitHub CLI
+- Performs clean dependency installation (`npm install`)
+- Starts MCP server automatically via `mcp-control.js`
+- Runs health checks on `http://localhost:3000/health`
+- Comprehensive error handling and logging to `restart-codespace.log`
+
+**`scripts/mcp-control.js`** (Node.js)
+- Graceful integration with `mcp-ecosystem-manager.js` when available
+- Fallback to `npm start` or `node server.js` if manager unavailable
+- Process management for MCP server lifecycle
+- Detailed logging to `dev-helper.log`
+
+**`scripts/dev-helper.js`** (Node.js)
+- Automated health checks with configurable retries and intervals
+- Self-healing agent with exponential backoff recovery
+- Runs complete development cycle: install → start → test → verify
+- Automatic restart attempts on health/test failures
+- Continuous monitoring mode for long-running development
+
+#### Development Helper Options
+
+```bash
+# Customize retry behavior
+node scripts/dev-helper.js run --max-retries 5 --health-interval 60000
+
+# Use different server URL
+node scripts/dev-helper.js health --server-url http://localhost:8080
+
+# Install dependencies only
+node scripts/dev-helper.js install
+```
+
+#### Self-Healing Features
+
+The development helper system includes:
+- **Exponential Backoff**: Intelligent retry delays to avoid overwhelming failed services
+- **Health Monitoring**: Continuous checks of `/health` endpoint with configurable intervals
+- **Auto-Recovery**: Automatic dependency reinstall and server restart on failures
+- **Test Integration**: Runs `test-mcp-ecosystem.js` and attempts recovery on test failures
+- **Process Management**: Clean shutdown and restart of MCP server processes
+
+#### Logging and Monitoring
+
+All scripts provide comprehensive logging:
+- **`restart-codespace.log`**: Complete restart process logs with timestamps
+- **`dev-helper.log`**: Development cycle, health checks, and recovery attempts
+- **Console Output**: Real-time status with color-coded messages
+
+#### Example Workflow
+
+```bash
+# 1. Start development session
+./scripts/restart-codespace.sh
+
+# 2. Run continuous monitoring (in background)
+node scripts/dev-helper.js monitor &
+
+# 3. Develop your features...
+
+# 4. Run health check before committing
+node scripts/dev-helper.js health
+
+# 5. If issues arise, trigger recovery
+node scripts/dev-helper.js run
+```
+
+#### Integration with CI/CD
+
+The helper scripts are designed to be compatible with:
+- **GitHub Actions**: Use in workflow steps for environment setup
+- **Docker**: Scripts work in containerized environments
+- **MCP Resilience**: Integrates with existing MCP ecosystem patterns
+
+#### Suggested Improvements
+
+**Dockerization Enhancements:**
+- Multi-stage Docker builds for development and production
+- Docker Compose setup for local development with dependencies
+- Health check integration in Docker containers
+
+**GitHub Actions Integration:**
+- Automated Codespace setup workflows
+- Self-healing CI/CD pipelines with retry logic
+- Integration tests using the dev-helper system
+- Automatic environment recovery on workflow failures
+
+**Agent-Ready Architecture:**
+- Webhook endpoints for external monitoring systems
+- Metrics export for observability platforms
+- API endpoints for remote health checks and recovery triggers
+- Integration with GitHub Dependabot for automated dependency updates
+
 ## 🔒 Security
 
 - API key encryption at rest
