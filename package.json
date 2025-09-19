@@ -1,8 +1,12 @@
 {
   "name": "sina-empire-mcp-system",
-  "version": "1.0.0",
-  "description": "Comprehensive MCP ecosystem for unlimited scaling of Claude API calls into Cloudflare Workers",
+  "version": "2.0.0",
+  "description": "Comprehensive MCP ecosystem for unlimited scaling of Claude API calls into Cloudflare Workers with bulletproof CLI",
   "main": "server.js",
+  "bin": {
+    "mcp-cli": "./cli.js",
+    "bulletproof-cli": "./bulletproof-cli.js"
+  },
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
@@ -10,7 +14,10 @@
     "test:unit": "jest",
     "setup": "node scripts/setup.js",
     "lint": "eslint *.js scripts/*.js",
-    "format": "prettier --write *.js scripts/*.js"
+    "format": "prettier --write *.js scripts/*.js",
+    "cli": "node cli.js",
+    "bulletproof": "node bulletproof-cli.js",
+    "monitor": "node cli.js monitor"
   },
   "keywords": [
     "mcp",
@@ -18,11 +25,10 @@
     "cloudflare",
     "api",
     "scaling",
-    "resilience",
-    "orchestration"
+    "bulletproof",
+    "cli",
+    "automation"
   ],
-  "author": "SINA Empire",
-  "license": "MIT",
   "dependencies": {
     "express": "^4.18.2",
     "axios": "^1.6.0",
@@ -34,7 +40,9 @@
     "helmet": "^7.1.0",
     "cors": "^2.8.5",
     "express-rate-limit": "^7.1.5",
-    "joi": "^17.11.0"
+    "joi": "^17.11.0",
+    "yargs": "^17.7.2",
+    "chalk": "^5.3.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.2",
