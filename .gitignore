@@ -1,37 +1,42 @@
-# Dependenciesnode_modules/
+# Dependencies
+node_modules/
+npm-debug.log
+yarn-debug.log*
+yarn-error.log*
 
-node_modules/npm-debug.log
+# Environment variables
+.env
+.env.*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-npm-debug.log*.env
+# Logs
+logs/
+*.log
+mcp-system.log
+pm2.log
 
-yarn-debug.log*.env.*
+# Build outputs
+/dist
+/build
+/.parcel-cache
+/.cache
 
-yarn-error.log*/logs
-
+# Backups
 /backups
+/voice-cache
 
-# Environment variables/voice-cache
+# OS files
+.DS_Store
+.vscode/
+.idea/
 
-.env/dist
-
-.env.local/build
-
-.env.development.local.DS_Store
-
-.env.test.local.vscode/
-
-.env.production.local.idea/
-
+# Coverage
 coverage/
 
-# Logspm2.log
-
-logs//*.tgz
-
-*.log/.parcel-cache
-
-mcp-system.log/.cache
-
+# Temporary files
 wrangler.toml
 # Runtime data
 pids/
