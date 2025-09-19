@@ -9,12 +9,18 @@
     "test": "node scripts/test.js"
   },
   "dependencies": {
+    "dotenv": "^17.2.2",
     "express": "^4.18.2"
   },
   "bin": {
     "bulletproof-cli": "./bulletproof-cli.js"
   },
-  "keywords": ["cli", "pwa", "sina", "empire"],
+  "keywords": [
+    "cli",
+    "pwa",
+    "sina",
+    "empire"
+  ],
   "author": "",
   "license": "MIT"
 }
