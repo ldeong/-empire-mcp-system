@@ -158,6 +158,26 @@ Content-Type: application/json
 }
 ```
 
+## 🔧 Development Scripts
+
+### MCP Server Control
+```bash
+# Server lifecycle management
+node scripts/mcp-control.js [start|stop|restart|status]
+```
+
+### Development Helper
+```bash
+# Automated development workflow with health checks
+node scripts/dev-helper.js
+```
+
+### Codespace Restart
+```bash
+# Robust Codespace and MCP environment restart
+./scripts/restart-codespace.sh
+```
+
 ## 🎯 Voice Commands
 
 The system supports natural language voice commands for MCP operations:
@@ -246,10 +266,60 @@ curl http://localhost:3000/mcp/analytics?timeframe=24h
 ├── mcp-ecosystem-manager.js  # Core MCP ecosystem implementation
 ├── scripts/
 │   ├── auto-commit.js       # Automated commit system
-│   └── coding-agent-trigger.js # AI coding agent
+│   ├── coding-agent-trigger.js # AI coding agent
+│   ├── dev-helper.js        # Development helper with health checks
+│   ├── mcp-control.js       # MCP server start/stop/restart control
+│   ├── restart-codespace.sh # Robust Codespace restart helper
+│   └── setup.js             # Environment setup wizard
 ├── worker/                  # Cloudflare Worker code
 └── README.md               # This documentation
 ```
+
+### Development Scripts
+
+#### MCP Control Script
+Control MCP server lifecycle with robust error handling:
+```bash
+# Check server status
+node scripts/mcp-control.js status
+
+# Start MCP server
+node scripts/mcp-control.js start
+
+# Stop MCP server
+node scripts/mcp-control.js stop
+
+# Restart MCP server
+node scripts/mcp-control.js restart
+```
+
+#### Development Helper
+Automated development workflow with health checks and dependency management:
+```bash
+# Run complete development setup and validation
+node scripts/dev-helper.js
+```
+
+Features:
+- Ensures dependencies are installed
+- Verifies server health with exponential backoff
+- Runs automated tests
+- Auto-restarts server on failures
+- Comprehensive logging to `dev-helper.log`
+
+#### Codespace Restart Helper
+Robust restart script for GitHub Codespaces with full logging:
+```bash
+# Restart Codespace and MCP environment
+./scripts/restart-codespace.sh
+```
+
+Features:
+- Graceful MCP server shutdown
+- GitHub Codespace restart (when available)
+- Dependency reinstallation
+- Health check verification
+- Comprehensive logging to `restart-codespace.log`
 
 ### Adding New Workflows
 1. Define workflow in `mcp-ecosystem-manager.js`
