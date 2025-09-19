@@ -1,0 +1,42 @@
+{
+  "build": {
+    "name": "sina-empire-ultimate",
+    "version": "2.0.0",
+    "description": "Voice-controlled PWA + CLI for multi-agent orchestration",
+    "stack": {
+      "frontend": "PWA (HTML/JS, Web Speech API, Service Worker, Manifest)",
+      "backend": "Node.js Express server + Cloudflare Worker",
+      "dev": "GitHub Codespace/Gitpod with Docker-in-Docker",
+      "orchestration": "MCP endpoints (/mcp/voice, /mcp/revenue, /mcp/genealogy, /mcp/workflows, /mcp/session, /mcp/audit)",
+      "agents": "Docker containers for agent processes",
+      "database": "MongoDB Cosmos DB + Cloudflare KV",
+      "voice": "Web Speech API + ElevenLabs/Azure TTS",
+      "anonymity": "HttpsProxyAgent rotation, anonymous Git options",
+      "revenue": "Track per-call and per-MCP revenue with webhook fallback",
+      "git": "Branch strategy and GitHub Actions for deploy/test/backup"
+    },
+    "files": {
+      ".devcontainer/devcontainer.json": {
+        "name": "SINA Empire Dev",
+        "image": "mcr.microsoft.com/devcontainers/javascript-node:18-bullseye",
+        "features": ["docker-in-docker", "github-cli"],
+        "postCreateCommand": "npm install && npm run setup"
+      },
+      ".gitpod.yml": {
+        "image": { "file": ".gitpod.Dockerfile" },
+        "tasks": [{ "init": "npm install -g wrangler@latest && npm install", "command": "npm run dev" }],
+        "ports": [8787, 8788, 3000]
+      },
+      "package.json": {
+        "name": "sina-empire-ultimate",
+        "version": "2.0.0",
+        "scripts": { "start": "node server.js", "dev": "nodemon server.js", "setup": "node scripts/setup.js" }
+      },
+      "server.js": "Express server with /health, /sina/interface and POST /mcp/voice endpoints",
+      "bulletproof-cli.js": "CLI with status, voice, revenue commands",
+      "public/sina/interface.html": "PWA interface with Web Speech API hooks",
+      ".env.example": "Placeholders for required API keys — DO NOT STORE REAL KEYS IN REPO",
+      "README.md": "Project README with setup and secrets guidance"
+    }
+  }
+}
