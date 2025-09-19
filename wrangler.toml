@@ -1,0 +1,18 @@
+name = "sina-empire-worker"
+main = "worker/index.js"
+compatibility_date = "2023-10-25"
+
+[env.production]
+vars = { ENVIRONMENT = "production" }
+
+[env.staging]
+vars = { ENVIRONMENT = "staging" }
+
+[[kv_namespaces]]
+binding = "SINA_KV"
+id = "your-kv-namespace-id"
+preview_id = "your-preview-kv-namespace-id"
+
+[vars]
+ENVIRONMENT = "development"
+API_BASE_URL = "https://api.sina-empire.com"

@@ -1,0 +1,34 @@
+{
+  "name": "sina-empire-cli-pwa",
+  "version": "1.0.0",
+  "description": "SINA Empire CLI + PWA System",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "setup": "node setup.js",
+    "dev": "concurrently \"npm run worker:dev\" \"npm run pwa:dev\" \"npm run cli:server\"",
+    "worker:dev": "wrangler dev --port 8787",
+    "worker:deploy": "wrangler deploy",
+    "pwa:dev": "cd public && python3 -m http.server 8788",
+    "cli:server": "node bulletproof-cli.js server --port 3000",
+    "build": "npm run worker:build && npm run pwa:build",
+    "worker:build": "wrangler deploy --dry-run",
+    "pwa:build": "echo 'PWA build complete'",
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "@cloudflare/workers-types": "^4.20231025.0",
+    "commander": "^11.1.0",
+    "express": "^4.18.2",
+    "chalk": "^5.3.0",
+    "inquirer": "^9.2.12",
+    "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "wrangler": "^3.15.0"
+  },
+  "keywords": ["sina", "empire", "cli", "pwa", "cloudflare", "worker"],
+  "author": "SINA Empire",
+  "license": "MIT"
+}

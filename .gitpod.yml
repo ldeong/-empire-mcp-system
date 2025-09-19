@@ -1,0 +1,22 @@
+image:
+  file: .gitpod.Dockerfile
+
+ports:
+  - port: 8787
+    onOpen: notify
+    name: Worker Preview
+  - port: 8788
+    onOpen: notify
+    name: PWA Preview
+  - port: 3000
+    onOpen: notify
+    name: CLI Server
+
+tasks:
+  - init: npm install && npm run setup
+    command: npm run dev
+
+vscode:
+  extensions:
+    - GitHub.copilot
+    - cloudflare.vscode-wrangler
