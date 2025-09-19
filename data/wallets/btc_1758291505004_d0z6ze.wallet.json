@@ -1,0 +1,13 @@
+{
+  "id": "btc_1758291505004_d0z6ze",
+  "label": "test_btc_wallet",
+  "currency": "BTC",
+  "public_address": "mhJQ4Lqd63r6zRSaLnq2bRUZGmh1qebfQe",
+  "encrypted_key": "7842d9de8f93469247af3080d7249e481e9188f9c52d1924d48b9ba58be38740a348fbea733de7e4285e62486f9cd997f31c5bb4b52a975c22955b0c63b9e9856980b233",
+  "iv": "eb869eb70a130d111b044764",
+  "mnemonic_encrypted": "e8659fe8901349567ced5fada3244e78265984aad621be92844f24972c581781a288d7449153f180663d8da578f848b5d63b98a5d3e01c8bdc7205267d6585ee9b43f9264f94b99df2c14fbf03d21b09ff4dbb",
+  "network": "testnet",
+  "created_at": "2025-09-19T14:18:25.005Z",
+  "balance": 0,
+  "real_chain": true
+}

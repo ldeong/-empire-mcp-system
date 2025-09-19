@@ -1,0 +1,28 @@
+{
+  "total_revenue": 150,
+  "total_expenses": 120,
+  "available_balance": 30,
+  "transactions": [
+    {
+      "id": "0375019d-31ad-4505-a285-a624b2cd429f",
+      "type": "revenue",
+      "amount": 150,
+      "description": "SeedFunding",
+      "metadata": {},
+      "timestamp": "2025-09-19T14:38:23.842Z",
+      "balance_after": 150
+    },
+    {
+      "id": "beb7c4aa-a5e6-41f6-9cec-fd19c5360966",
+      "type": "reinvestment",
+      "amount": 120,
+      "description": "Reinvestment cycle f565f99a",
+      "metadata": {
+        "cycle_id": "f565f99a-2ca0-4a8e-9231-cb43e400997b"
+      },
+      "timestamp": "2025-09-19T14:38:35.569Z",
+      "balance_after": 30
+    }
+  ],
+  "last_updated": "2025-09-19T14:38:35.569Z"
+}

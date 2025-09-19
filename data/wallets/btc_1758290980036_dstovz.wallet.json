@@ -1,0 +1,12 @@
+{
+  "id": "btc_1758290980036_dstovz",
+  "label": "btc_test_wallet",
+  "currency": "BTC",
+  "public_address": "b1612732e5c5d938b836a910341d3f7618f10c0170",
+  "encrypted_key": "6568c1fb75d1b338bdd1be574db715daa95db46127ed2a84ab6f29cfbd72681800799f790b7a5c54023854e7ea5bc5fd727f3fc94b6360ed928bfcd98494b8406724420330675a2cb6948cd7acbe81ee",
+  "iv": "8c69b14bfc769f9344491d6a",
+  "provider": "SIM",
+  "created_at": "2025-09-19T14:09:40.038Z",
+  "balance": 0,
+  "extra": {}
+}

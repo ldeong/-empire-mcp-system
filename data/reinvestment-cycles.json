@@ -1,0 +1,228 @@
+{
+  "cycles": [
+    {
+      "id": "f565f99a-2ca0-4a8e-9231-cb43e400997b",
+      "created_at": "2025-09-19T14:38:29.828Z",
+      "status": "executing",
+      "available_balance": 150,
+      "reinvest_amount": 120,
+      "allocations": {
+        "agents": {
+          "amount": 72,
+          "estimated_agents": 14,
+          "status": "planned"
+        },
+        "infrastructure": {
+          "amount": 36,
+          "status": "planned"
+        },
+        "reserves": {
+          "amount": 12,
+          "status": "planned"
+        }
+      },
+      "actions": [
+        {
+          "id": "b4abc91c-125a-46cd-b990-b1a4beb75af8",
+          "type": "spawn_agent",
+          "priority": "high",
+          "cost": 5,
+          "payload": {
+            "agent_type": "customer_engagement",
+            "specialization": "family_genealogy_reports",
+            "initial_budget": 5
+          },
+          "status": "queued",
+          "job_id": "21b77403-ca5e-4656-ab18-75afc03ca393"
+        },
+        {
+          "id": "9d51699c-eb70-4c8d-a167-b11581f2f6d7",
+          "type": "spawn_agent",
+          "priority": "high",
+          "cost": 5,
+          "payload": {
+            "agent_type": "revenue_optimizer",
+            "specialization": "family_genealogy_reports",
+            "initial_budget": 5
+          },
+          "status": "queued",
+          "job_id": "eef79932-c505-4654-a0e6-8eca8d5a5b68"
+        },
+        {
+          "id": "e761af14-d79d-497b-a093-77f03bcff576",
+          "type": "spawn_agent",
+          "priority": "high",
+          "cost": 5,
+          "payload": {
+            "agent_type": "customer_engagement",
+            "specialization": "conversational_ai_interactions",
+            "initial_budget": 5
+          },
+          "status": "queued",
+          "job_id": "f55605b1-89cc-41e9-aea0-63496e593e71"
+        },
+        {
+          "id": "84d89160-adc3-4c9f-b6e7-c962568429e6",
+          "type": "spawn_agent",
+          "priority": "high",
+          "cost": 5,
+          "payload": {
+            "agent_type": "genealogy_researcher",
+            "specialization": "conversational_ai_interactions",
+            "initial_budget": 5
+          },
+          "status": "queued",
+          "job_id": "5a1eb89b-83f2-4840-80c8-8049cc3d9823"
+        },
+        {
+          "id": "6266a777-711d-4b2b-b9e4-8076a6c6324a",
+          "type": "spawn_agent",
+          "priority": "high",
+          "cost": 5,
+          "payload": {
+            "agent_type": "customer_engagement",
+            "specialization": "system_optimization",
+            "initial_budget": 5
+          },
+          "status": "queued",
+          "job_id": "96a68ea3-b668-4031-b250-8613a4c9b69c"
+        },
+        {
+          "id": "4a9eaafc-0850-44b2-83db-bc3ffadc08a9",
+          "type": "spawn_agent",
+          "priority": "high",
+          "cost": 5,
+          "payload": {
+            "agent_type": "genealogy_researcher",
+            "specialization": "system_optimization",
+            "initial_budget": 5
+          },
+          "status": "queued",
+          "job_id": "658f144c-28fc-44e9-a037-5d6045fb1342"
+        },
+        {
+          "id": "45bd8a58-5153-46f7-a3dc-536d6e6ebec3",
+          "type": "spawn_agent",
+          "priority": "high",
+          "cost": 5,
+          "payload": {
+            "agent_type": "voice_ai_specialist",
+            "specialization": "customer_acquisition",
+            "initial_budget": 5
+          },
+          "status": "queued",
+          "job_id": "db4ea9b3-7787-4dde-a73d-bd02fd9dd2bd"
+        },
+        {
+          "id": "70290371-cb0b-4a9c-958a-15dcbfc89f6d",
+          "type": "spawn_agent",
+          "priority": "high",
+          "cost": 5,
+          "payload": {
+            "agent_type": "infrastructure_monitor",
+            "specialization": "family_genealogy_reports",
+            "initial_budget": 5
+          },
+          "status": "queued",
+          "job_id": "410128e0-f651-41fd-be67-dbc15ca77ddf"
+        },
+        {
+          "id": "dea02379-64f9-4438-b7f1-aafd6ff2ab7a",
+          "type": "spawn_agent",
+          "priority": "high",
+          "cost": 5,
+          "payload": {
+            "agent_type": "voice_ai_specialist",
+            "specialization": "automated_income_generation",
+            "initial_budget": 5
+          },
+          "status": "queued",
+          "job_id": "71ea8366-3de7-4e5a-98db-416fd0def277"
+        },
+        {
+          "id": "db3e6850-db30-4588-93f5-dae2fc2812b5",
+          "type": "spawn_agent",
+          "priority": "high",
+          "cost": 5,
+          "payload": {
+            "agent_type": "customer_engagement",
+            "specialization": "automated_income_generation",
+            "initial_budget": 5
+          },
+          "status": "queued",
+          "job_id": "bb333af4-5ead-4b61-a3ea-ef7b74717864"
+        },
+        {
+          "id": "bc4f3cf2-126d-49e4-b376-bc13663434b3",
+          "type": "spawn_agent",
+          "priority": "high",
+          "cost": 5,
+          "payload": {
+            "agent_type": "voice_ai_specialist",
+            "specialization": "family_genealogy_reports",
+            "initial_budget": 5
+          },
+          "status": "queued",
+          "job_id": "52f18643-6686-4b6d-8b2b-a43f738284ce"
+        },
+        {
+          "id": "01230168-3fa3-4605-942a-c8dfcf9b27a9",
+          "type": "spawn_agent",
+          "priority": "high",
+          "cost": 5,
+          "payload": {
+            "agent_type": "financial_analyzer",
+            "specialization": "family_genealogy_reports",
+            "initial_budget": 5
+          },
+          "status": "queued",
+          "job_id": "8933b91d-a089-4a48-a750-5bbfa92d23e4"
+        },
+        {
+          "id": "13bb39e3-d456-4135-aaff-c4cddbb7a7f6",
+          "type": "spawn_agent",
+          "priority": "high",
+          "cost": 5,
+          "payload": {
+            "agent_type": "revenue_optimizer",
+            "specialization": "automated_income_generation",
+            "initial_budget": 5
+          },
+          "status": "queued",
+          "job_id": "103a11ed-a991-40c2-94d1-16bab846ea1e"
+        },
+        {
+          "id": "e71b49f4-7b4c-42d3-8dc8-85ff797412f4",
+          "type": "spawn_agent",
+          "priority": "high",
+          "cost": 5,
+          "payload": {
+            "agent_type": "infrastructure_monitor",
+            "specialization": "data_analysis_insights",
+            "initial_budget": 5
+          },
+          "status": "queued",
+          "job_id": "e66ac8ab-d57c-4f78-b82d-1ba4e5832ea9"
+        },
+        {
+          "id": "9c64ece4-2df2-4420-b94c-edf761a02654",
+          "type": "scale_infrastructure",
+          "priority": "medium",
+          "cost": 36,
+          "payload": {
+            "targets": [
+              "cloudflare_workers",
+              "d1_databases",
+              "r2_storage"
+            ],
+            "upgrade_type": "capacity_expansion"
+          },
+          "status": "queued",
+          "job_id": "bd113250-9cc9-4696-b437-8924e4ddb334"
+        }
+      ],
+      "executed_at": "2025-09-19T14:38:35.583Z",
+      "executed_actions": 15
+    }
+  ]
+}

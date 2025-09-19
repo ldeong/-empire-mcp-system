@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const { exec } = require('child_process');
 const { SinaMCPManager } = require('./mcp-ecosystem-manager');
+const { getScheduler, CRON_CONFIG } = require('./cron-scheduler');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -19,6 +20,46 @@ app.get('/', (req, res) => {
 app.get('/health', (req, res) => {
   res.json({ status: 'healthy', timestamp: new Date().toISOString() });
 });
+
+// Initialize cron scheduler & register baseline jobs
+const scheduler = getScheduler();
+try {
+  scheduler.registerJob({
+    id:'heartbeat',
+    name:'System Heartbeat',
+    scheduleSeconds: 60,
+    expectedRuntimeSec: 1,
+    handler: async () => ({ beat: new Date().toISOString() })
+  });
+  scheduler.registerJob({
+    id:'jobs-drain',
+    name:'Process Next Autonomous Job',
+    scheduleSeconds: 90,
+    expectedRuntimeSec: 5,
+    handler: async () => {
+      try {
+        const { JobsManager, executeJobSimulation } = require('./autonomous-engine');
+        const jm = new JobsManager();
+        const job = await jm.next();
+        if(!job) return { processed:false };
+        await jm.markStarted(job.id);
+        const result = await executeJobSimulation(job);
+        if(result.success) await jm.markCompleted(job.id, result.result); else await jm.markFailed(job.id, result.error||'err');
+        return { processed:true, jobId: job.id, type: job.type };
+      } catch(e){ return { error: e.message }; }
+    }
+  });
+} catch(e){ console.warn('Cron job registration issue:', e.message); }
+
+// Cron endpoints
+app.get('/cron/status', (req,res)=>{
+  return res.json({ enabled: CRON_CONFIG.ENABLE, jobs: scheduler.listJobs(), stats: scheduler.getStats() });
+});
+app.post('/cron/run', async (req,res)=>{
+  const { id } = req.body || {}; if(!id) return res.status(400).json({error:'id required'});
+  try { const run = await scheduler.runJob(id,'manual'); res.json({ run }); } catch(e){ res.status(500).json({error:e.message}); }
+});
+app.get('/cron/runs', (req,res)=>{ const limit = parseInt(req.query.limit||'50'); res.json({ runs: scheduler.getRecentRuns(limit) }); });
 
 // Auto-commit functionality
 function runAutoCommit(options = {}) {
@@ -415,6 +456,60 @@ app.post('/mcp/webhook/register', (req, res) => {
       message: error.message
     });
   }
+});
+
+// === Autonomous Engine Integration (appended) ===
+let autonomousEngine, jobsMgr, execJobSim;
+try {
+  const { AutonomousReinvestmentEngine, JobsManager, executeJobSimulation } = require('./autonomous-engine');
+  autonomousEngine = new AutonomousReinvestmentEngine();
+  jobsMgr = new JobsManager();
+  execJobSim = executeJobSimulation;
+  console.log('⚙️ Autonomous engine loaded');
+} catch (e) {
+  console.warn('Autonomous engine not available:', e.message);
+}
+
+// Financial summary
+app.get('/financial/summary', async (req,res)=>{
+  if(!autonomousEngine) return res.status(503).json({error:'autonomous engine disabled'});
+  try { return res.json(await autonomousEngine.getFinancialSummary()); } catch(e){ res.status(500).json({error:e.message}); }
+});
+
+// Add revenue
+app.post('/financial/revenue', async (req,res)=>{
+  if(!autonomousEngine) return res.status(503).json({error:'autonomous engine disabled'});
+  try { const { amount, description, meta }=req.body||{}; const tx= await autonomousEngine.addTransaction('revenue', parseFloat(amount), description||'API Revenue', meta||{}); res.json({success:true, tx}); } catch(e){ res.status(400).json({error:e.message}); }
+});
+
+// Evaluate reinvestment
+app.post('/invest/reinvest/evaluate', async (req,res)=>{
+  if(!autonomousEngine) return res.status(503).json({error:'autonomous engine disabled'});
+  try { const cycle = await autonomousEngine.evaluateReinvestmentCycle(); res.json({cycle, eligible: !!cycle}); } catch(e){ res.status(500).json({error:e.message}); }
+});
+
+// Execute reinvestment
+app.post('/invest/reinvest/execute', async (req,res)=>{
+  if(!autonomousEngine) return res.status(503).json({error:'autonomous engine disabled'});
+  try { const { cycle_id } = req.body||{}; const cycle = await autonomousEngine.executeReinvestmentCycle(cycle_id); if(!cycle) return res.status(400).json({error:'no cycle available'}); res.json({success:true, cycle}); } catch(e){ res.status(500).json({error:e.message}); }
+});
+
+// Jobs listing
+app.get('/jobs', async (req,res)=>{
+  if(!jobsMgr) return res.status(503).json({error:'autonomous engine disabled'});
+  try { const data = await jobsMgr.load(); res.json(data); } catch(e){ res.status(500).json({error:e.message}); }
+});
+
+// Run next job
+app.post('/jobs/run-next', async (req,res)=>{
+  if(!jobsMgr) return res.status(503).json({error:'autonomous engine disabled'});
+  try { const job = await jobsMgr.next(); if(!job) return res.json({message:'no jobs'}); await jobsMgr.markStarted(job.id); const result = await execJobSim(job); if(result.success) await jobsMgr.markCompleted(job.id, result.result); else await jobsMgr.markFailed(job.id, result.error||'unknown'); res.json({jobId:job.id, result}); } catch(e){ res.status(500).json({error:e.message}); }
+});
+
+// System status (extended)
+app.get('/autonomous/status', async (req,res)=>{
+  if(!autonomousEngine) return res.status(503).json({error:'autonomous engine disabled'});
+  try { res.json(await autonomousEngine.systemStatus()); } catch(e){ res.status(500).json({error:e.message}); }
 });
 
 app.listen(PORT, () => {

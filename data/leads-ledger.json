@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "created_at": "${DATE}",
+  "leads": [],
+  "pipeline": [],
+  "stats": {
+    "total": 0,
+    "qualified": 0,
+    "contacted": 0,
+    "negotiating": 0,
+    "won": 0,
+    "paid": 0
+  }
+}
