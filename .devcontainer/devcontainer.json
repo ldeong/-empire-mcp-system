@@ -1,0 +1,26 @@
+{
+  "name": "SINA Empire CLI + PWA",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:18-bullseye",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "postCreateCommand": "npm install && npm run setup",
+  "forwardPorts": [8787, 8788, 3000],
+  "portsAttributes": {
+    "8787": {"label": "Worker Preview", "onAutoForward": "notify"},
+    "8788": {"label": "PWA Preview", "onAutoForward": "notify"},
+    "3000": {"label": "CLI Server", "onAutoForward": "notify"}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "GitHub.copilot",
+        "cloudflare.vscode-wrangler",
+        "ms-vscode.vscode-json",
+        "bradlc.vscode-tailwindcss"
+      ]
+    }
+  },
+  "remoteUser": "node"
+}
