@@ -263,6 +263,152 @@ curl http://localhost:3000/mcp/analytics?timeframe=24h
 3. Update voice command parser
 4. Add webhook events
 
+## 🔄 Development / Restart Codespace
+
+### Quick Restart Script
+The Empire MCP System includes a comprehensive Codespaces restart script for development environments:
+
+```bash
+# Full Codespace restart with MCP server reinitialization
+./scripts/restart-codespace.sh
+```
+
+**What it does:**
+- 🛑 Stops any running MCP dev server processes
+- 🔄 Restarts the Codespace container (requires GitHub CLI)
+- 📦 Reinstalls dependencies (`npm install`)
+- 🚀 Starts the MCP server automatically
+- 🏥 Performs health checks at `http://localhost:3000/health`
+- 📝 Provides detailed logging and error handling
+
+**Requirements:**
+- GitHub CLI (`gh`) installed and authenticated
+- Node.js 18+ environment
+- npm package manager
+
+### Development Helper Script
+Advanced development utilities for monitoring and maintaining the MCP ecosystem:
+
+```bash
+# Monitor system and auto-fix issues
+node scripts/dev-helper.js monitor
+
+# Check server health
+node scripts/dev-helper.js health
+
+# Run the complete MCP test suite
+node scripts/dev-helper.js test
+
+# Check critical endpoints
+node scripts/dev-helper.js endpoints
+
+# Restart MCP server
+node scripts/dev-helper.js restart
+
+# Generate status report
+node scripts/dev-helper.js report
+```
+
+**Key Features:**
+- ✅ Health monitoring with automatic retry logic
+- 🧪 Automated test suite execution
+- 🔄 Intelligent auto-restart on critical failures
+- 📊 Comprehensive status reporting
+- 🎯 Critical endpoint validation
+- 📈 Performance monitoring and analytics
+
+**Auto-Restart Logic:**
+The dev-helper automatically restarts the MCP server when:
+- Health endpoint returns non-200 status
+- Critical endpoints (`/mcp/status`, `/mcp/workflows`) fail
+- Server becomes unresponsive
+
+**Usage Examples:**
+```bash
+# Monitor with custom retry count
+node scripts/dev-helper.js health --retries 10
+
+# Use custom base URL
+node scripts/dev-helper.js monitor --url http://localhost:8080
+
+# Check if system needs restart
+node scripts/dev-helper.js endpoints
+if [ $? -ne 0 ]; then
+    echo "Critical failures detected, restarting..."
+    node scripts/dev-helper.js restart
+fi
+```
+
+### Codespace Environment Setup
+
+**Manual Setup:**
+```bash
+# 1. Install dependencies
+npm install
+
+# 2. Copy environment template
+cp .env.example .env
+
+# 3. Configure environment variables (edit .env)
+nano .env
+
+# 4. Start the server
+npm start
+```
+
+**Verification Commands:**
+```bash
+# Test server health
+curl http://localhost:3000/health
+
+# Run test suite
+npm test
+
+# Check development helper
+node scripts/dev-helper.js report
+```
+
+### Integration with MCP Ecosystem
+
+The restart and development helper scripts are designed to work seamlessly with:
+
+- **🔄 Resilience Mechanisms**: Compatible with circuit breakers and retry logic
+- **🎼 Workflow Manager**: Preserves workflow state during restarts
+- **🚀 CI/CD Pipeline**: Provides proper exit codes for automation
+- **📊 Analytics**: Logs all operations for monitoring
+- **🔗 Webhook Integration**: Maintains webhook registrations
+
+### Troubleshooting
+
+**Common Issues:**
+
+1. **GitHub CLI not authenticated:**
+   ```bash
+   gh auth login
+   ```
+
+2. **Port already in use:**
+   ```bash
+   # Kill processes on port 3000
+   pkill -f "node.*server.js"
+   lsof -ti:3000 | xargs kill
+   ```
+
+3. **Dependencies out of sync:**
+   ```bash
+   rm -rf node_modules package-lock.json
+   npm install
+   ```
+
+4. **Health check failures:**
+   ```bash
+   # Check server logs
+   tail -f /tmp/mcp-server.log
+   
+   # Restart with dev helper
+   node scripts/dev-helper.js restart
+   ```
+
 ## 🔒 Security
 
 - API key encryption at rest
