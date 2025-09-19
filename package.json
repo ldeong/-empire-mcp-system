@@ -1,6 +1,7 @@
 {
   "name": "sina-empire-mcp-system",
   "version": "1.0.0",
+  "type": "module",
   "description": "Comprehensive MCP ecosystem for unlimited scaling of Claude API calls into Cloudflare Workers",
   "main": "server.js",
   "scripts": {
@@ -24,24 +25,24 @@
   "author": "SINA Empire",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2",
-    "axios": "^1.6.0",
-    "dotenv": "^16.3.1",
-    "ws": "^8.14.2",
-    "uuid": "^9.0.1",
-    "node-cron": "^3.0.3",
-    "winston": "^3.11.0",
-    "helmet": "^7.1.0",
+    "axios": "^1.12.2",
     "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.21.2",
     "express-rate-limit": "^7.1.5",
-    "joi": "^17.11.0"
+    "helmet": "^7.1.0",
+    "joi": "^17.11.0",
+    "node-cron": "^3.0.3",
+    "uuid": "^9.0.1",
+    "winston": "^3.11.0",
+    "ws": "^8.18.3"
   },
   "devDependencies": {
-    "nodemon": "^3.0.2",
-    "jest": "^29.7.0",
+    "@types/node": "^20.10.0",
     "eslint": "^8.55.0",
-    "prettier": "^3.1.0",
-    "@types/node": "^20.10.0"
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.2",
+    "prettier": "^3.1.0"
   },
   "engines": {
     "node": ">=18.0.0"

@@ -1,0 +1,26 @@
+{
+  "timestamp": "2025-09-19T17:46:19.696Z",
+  "codespaces_url": "shiny-dollop-wr4x565wqv542gx7p.github.dev",
+  "endpoint": "/diagnostic",
+  "timeout_duration": 60000,
+  "likely_causes": [
+    "Upstream server overload on GitHub Codespaces",
+    "Cold start latency in containerized environment",
+    "Network congestion between gateway and container",
+    "Resource exhaustion in the codespace instance",
+    "MCP server not responding within timeout window"
+  ],
+  "recommended_fixes": [
+    "Implement connection pooling",
+    "Add circuit breaker pattern",
+    "Create local diagnostic bypass",
+    "Use shorter timeout with faster retries",
+    "Implement health check endpoints"
+  ],
+  "connectivity_test": {
+    "codespaces_ping": true,
+    "github_api": true,
+    "external_http": false,
+    "dns_resolution": true
+  }
+}

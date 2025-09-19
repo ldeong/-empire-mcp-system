@@ -1,0 +1,36 @@
+{
+  "server_port": 3001,
+  "github_integration": true,
+  "auto_reconnect": true,
+  "connection_timeout": 10000,
+  "max_retries": 5,
+  "services": {
+    "sina_empire_agents": {
+      "enabled": true,
+      "endpoints": [
+        "/agents",
+        "/deploy",
+        "/status"
+      ],
+      "auth_required": false
+    },
+    "wallet_integration": {
+      "enabled": true,
+      "endpoints": [
+        "/wallets",
+        "/transactions",
+        "/verify"
+      ],
+      "auth_required": true
+    },
+    "pipeline_management": {
+      "enabled": true,
+      "endpoints": [
+        "/leads",
+        "/qualify",
+        "/convert"
+      ],
+      "auth_required": false
+    }
+  }
+}
