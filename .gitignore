@@ -1,38 +1,46 @@
-# Dependenciesnode_modules/
+# Dependencies
+node_modules/
+npm-debug.log
+yarn-debug.log*
+yarn-error.log*
 
-node_modules/npm-debug.log
+# Logs
+logs/
+*.log
+mcp-system.log
 
-npm-debug.log*.env
-
-yarn-debug.log*.env.*
-
-yarn-error.log*/logs
-
+# Backups
 /backups
+/voice-cache
 
-# Environment variables/voice-cache
+# Environment variables
+.env
+.env.*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-.env/dist
+# Build outputs
+/dist
+/build
 
-.env.local/build
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 
-.env.development.local.DS_Store
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 
-.env.test.local.vscode/
-
-.env.production.local.idea/
-
-coverage/
-
-# Logspm2.log
-
-logs//*.tgz
-
-*.log/.parcel-cache
-
-mcp-system.log/.cache
-
-wrangler.toml
 # Runtime data
 pids/
 *.pid
@@ -92,22 +100,13 @@ jspm_packages/
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
 
-# OS generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-
-# IDE files
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
 # Temporary files
 tmp/
 temp/
+
+# Package lock files (regenerated locally)
+package-lock.json
+
+# Log files from scripts
+dev-helper.log
+restart-codespace.log
