@@ -1,0 +1,21 @@
+name = "sina-empire-revenue-multiplier"
+main = "src/advanced-worker.js"
+compatibility_date = "2024-12-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Account Configuration - LIVE DEPLOYMENT
+account_id = "fb05ba58cf4b46f19221514cfb75ab61"
+
+# Worker Configuration - PRODUCTION READY
+workers_dev = true
+
+# KV Namespace for earnings persistence
+[[kv_namespaces]]
+binding = "EARNINGS_KV"
+id = "36117b73cef941659257140e7066b5f7"
+
+# Environment Variables
+[vars]
+SYSTEM_MODE = "MASTER_COMMANDER"
+REVENUE_TARGET = "5.00"
+DEPLOYMENT_STATUS = "LIVE_PRODUCTION"
