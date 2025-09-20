@@ -1,0 +1,19 @@
+{
+  "name": "sina-income-empire",
+  "version": "1.0.0",
+  "description": "Complete Autonomous Income Generation System",
+  "main": "src/income-empire.js",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy --config wrangler-empire.toml",
+    "start": "wrangler dev --config wrangler-empire.toml"
+  },
+  "dependencies": {
+    "hono": "^3.9.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240909.0",
+    "wrangler": "^3.0.0"
+  }
+}

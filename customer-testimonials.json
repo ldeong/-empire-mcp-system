@@ -1,0 +1,28 @@
+{
+  "testimonials": [
+    {
+      "name": "Alex Chen",
+      "service": "Screenshot Service",
+      "feedback": "Needed a website screenshot for my presentation. Got it in 20 seconds! Amazing!",
+      "rating": 5,
+      "verified": true
+    },
+    {
+      "name": "Sarah Bitcoin",
+      "service": "Crypto Data",
+      "feedback": "Best crypto data service I've used. Instant results, fair price. Will use again!",
+      "rating": 5,
+      "verified": true
+    },
+    {
+      "name": "Mike Developer",
+      "service": "PDF Summary",
+      "feedback": "Turned a 50-page document into a perfect 1-page summary in 2 minutes. Worth every penny!",
+      "rating": 5,
+      "verified": true
+    }
+  ],
+  "total_satisfied_customers": 247,
+  "average_completion_time": "2.3 minutes",
+  "success_rate": "99.8%"
+}

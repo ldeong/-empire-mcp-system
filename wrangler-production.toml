@@ -1,0 +1,80 @@
+name = "sina-empire-crypto-gateway"
+main = "src/crypto-worker.js"
+compatibility_date = "2024-11-01"
+compatibility_flags = ["nodejs_compat", "streams_enable_constructors"]
+
+# Account Configuration
+account_id = "fb05ba58cf4b46f19221514cfb75ab61"
+
+# Worker Configuration
+workers_dev = true
+
+# Environment Variables with enhanced security
+[vars]
+ENVIRONMENT = "production"
+CRYPTO_API_VERSION = "v3.0"
+HYPERDRIVE_ENABLED = "true"
+VECTORIZE_ENABLED = "true"
+AI_GATEWAY_ENABLED = "true"
+MICRO_PHASE_TARGET = "500"
+ADMIN_TOKEN = "CHANGE_ME_SECURE_ADMIN_TOKEN"
+CONTEXT_CACHE_VERSION = "2"
+CLAUDE_CONTEXT_TAG = "EMPIRE-WORKER-CONTEXT"
+RATE_LIMIT_RPM = "10000"
+SECURITY_LEVEL = "maximum"
+EDGE_CACHE_TTL = "86400"
+ANALYTICS_ENABLED = "true"
+QUEUE_ENABLED = "true"
+R2_ENABLED = "true"
+
+# D1 Database Bindings - Enhanced with analytics
+[[d1_databases]]
+binding = "DB"
+database_name = "sina-empire-cashflow"
+database_id = "718ce63c-1063-4684-9898-cb6668e25c97"
+
+[[d1_databases]]
+binding = "MASTER_HUB"
+database_name = "sina-empire-master-hub"
+database_id = "f8c2d087-2232-420d-be02-9388e5f5ea60"
+
+[[d1_databases]]
+binding = "ANALYTICS"
+database_name = "sina-analytics-dashboard"
+database_id = "92d60ed2-b370-4d6d-ac16-a309175d4392"
+
+# KV Namespaces - Enhanced
+[[kv_namespaces]]
+binding = "EMPIRE_CACHE"
+id = "1164fb667ae0464898de97d1f563886d"
+
+[[kv_namespaces]]
+binding = "EMPIRE_CONTEXT"
+id = "36117b73cef941659257140e7066b5f7"
+
+# AI Gateway for enhanced AI capabilities  
+[ai]
+binding = "AI"
+
+# Cron Triggers for automated tasks
+[triggers]
+crons = [
+  "* * * * *",   # Monitor payments every minute
+  "0 * * * *",   # Generate analytics reports every hour  
+  "0 */6 * * *", # Backup data every 6 hours
+  "0 2 * * *"    # Optimize performance daily at 2 AM
+]
+
+# Environment-specific overrides
+[env.production]
+vars = { LOG_LEVEL = "info", RATE_LIMIT_STRICT = "true" }
+
+[env.staging]
+vars = { LOG_LEVEL = "debug", RATE_LIMIT_STRICT = "false" }
+
+[env.development]
+vars = { LOG_LEVEL = "debug", MOCK_PAYMENTS = "true" }
+
+# Advanced Worker configuration
+[placement]
+mode = "smart"

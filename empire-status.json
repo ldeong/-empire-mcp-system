@@ -1,0 +1,24 @@
+{
+  "timestamp": "2025-09-19T21:01:23.809Z",
+  "global": {
+    "deployed": true,
+    "url": "https://sina-empire-crypto-gateway.louiewong4.workers.dev",
+    "region": "SYD",
+    "status": "OPERATIONAL"
+  },
+  "local": {
+    "services": 4,
+    "active": "TBD"
+  },
+  "money": {
+    "earnings": "$0.00",
+    "offers": 5,
+    "escrow": "ready"
+  },
+  "next_actions": [
+    "1. Post active offers to start earning",
+    "2. Monitor payment webhooks",
+    "3. Scale to additional regions",
+    "4. Optimize performance metrics"
+  ]
+}

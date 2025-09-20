@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "name": "sina-empire-escrow",
+  "builds": [
+    {
+      "src": "src/escrow-to-scale-worker.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/src/escrow-to-scale-worker.js"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+[build]
+builder = "nixpacks"
+
+[deploy]
+healthcheckPath = "/"
+restartPolicyType = "always"
+
+[[services]]
+serviceName = "sina-empire-escrow"
+source = "."

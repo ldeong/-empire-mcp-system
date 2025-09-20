@@ -1,0 +1,31 @@
+{
+  "name": "sina-empire-escrow-system",
+  "version": "1.0.0",
+  "description": "SINA Empire Complete Escrow-to-Scale Money Making System",
+  "main": "src/escrow-to-scale-worker.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node --experimental-modules src/escrow-to-scale-worker.js",
+    "start": "node --experimental-modules src/escrow-to-scale-worker.js",
+    "deploy:vercel": "vercel --prod",
+    "deploy:railway": "railway up",
+    "deploy:cloudflare": "npx wrangler deploy src/escrow-to-scale-worker.js --name sina-empire-escrow --config wrangler-escrow.toml",
+    "test:local": "python3 -m http.server 8000"
+  },
+  "keywords": [
+    "escrow",
+    "jobs",
+    "marketplace", 
+    "payments",
+    "cryptocurrency",
+    "automation",
+    "scaling",
+    "money-making"
+  ],
+  "dependencies": {
+    "@cloudflare/workers-types": "^4.20240909.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

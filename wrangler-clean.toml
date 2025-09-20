@@ -1,0 +1,47 @@
+# 🚀 LEGAL REVENUE SYSTEM - CLEAN CONFIGURATION
+name = "legal-revenue-system"
+main = "src/legal-revenue-worker.js"
+compatibility_date = "2024-01-01"
+
+# Development Environment
+[env.development.vars]
+LOG_LEVEL = "debug"
+NEWS_API_KEY = "demo_key"
+OPENWEATHER_API_KEY = "demo_key"
+POLYGON_API_KEY = "demo_key"
+STRIPE_SECRET_KEY = "sk_test_demo"
+SYSTEM_MODE = "LEGAL_REVENUE_DEMO"
+
+# Production Environment  
+[env.production.vars]
+NEWS_API_KEY = "your_free_newsapi_key"
+OPENWEATHER_API_KEY = "your_free_weather_key"
+POLYGON_API_KEY = "your_free_polygon_key"
+STRIPE_SECRET_KEY = "sk_live_your_stripe_key"
+STRIPE_PUBLISHABLE_KEY = "pk_live_your_stripe_key"
+SYSTEM_MODE = "LEGAL_REVENUE"
+REVENUE_GOAL = "10000"
+
+# D1 Database for revenue tracking
+[[env.production.d1_databases]]
+binding = "REVENUE_DB"
+database_name = "legal-revenue-system"
+database_id = "your_d1_database_id"
+
+# KV storage for real-time data
+[[env.production.kv_namespaces]]
+binding = "REVENUE_KV" 
+id = "your_revenue_kv_id"
+
+[[env.production.kv_namespaces]]
+binding = "WEBHOOK_KV"
+id = "your_webhook_kv_id"
+
+[[env.production.kv_namespaces]]
+binding = "API_KEYS_KV"
+id = "your_api_keys_kv_id"
+
+# Custom domain routes
+[[env.production.routes]]
+pattern = "revenue.yourdomain.com/*"
+zone_name = "yourdomain.com"

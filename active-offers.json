@@ -1,0 +1,27 @@
+[
+  {
+    "service": "15-min Security Audit",
+    "price": "$25",
+    "platform": "Reddit r/forhire"
+  },
+  {
+    "service": "Quick Bug Fix",
+    "price": "$50",
+    "platform": "Discord freelance"
+  },
+  {
+    "service": "API Integration",
+    "price": "$75",
+    "platform": "Twitter DM"
+  },
+  {
+    "service": "Code Review Express",
+    "price": "$35",
+    "platform": "LinkedIn"
+  },
+  {
+    "service": "Performance Optimization",
+    "price": "$100",
+    "platform": "Upwork"
+  }
+]

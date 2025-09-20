@@ -1,0 +1,77 @@
+name = "ap2-mcp-optimizer"
+main = "src/optimizer-worker.js"
+compatibility_date = "2024-12-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Account Configuration - LIVE DEPLOYMENT
+account_id = "fb05ba58cf4b46f19221514cfb75ab61"
+
+# Worker Configuration - PRODUCTION READY WITH MCP OPTIMIZATION
+workers_dev = true
+
+# Environment Variables - OPTIMIZED MCP SYSTEM
+[vars]
+ENVIRONMENT = "production"
+SYSTEM_VERSION = "v3.1-mcp-optimized"
+CURRENCY_PRIMARY = "USD"
+MARKUP_PER_CALL_USD = "0.001"
+KEY_PURCHASE_FEE_PCT = "10"
+TIME_SKEW_SECONDS = "120"
+MIN_BALANCE_USDC = "25"
+AP2_PUBLIC_KID = "agent-kid-001"
+CIRCLE_BASE_URL = "https://api.circle.com/v1"
+MAX_DAILY_SPEND_USD = "100"
+
+# MCP Performance Optimization
+MCP_CACHE_TTL = "60"
+WEBSOCKET_TIMEOUT = "30000"
+MAX_CONCURRENT_REQUESTS = "100"
+PERFORMANCE_LOGGING = "true"
+
+# KV Namespaces for caching and performance
+[[kv_namespaces]]
+binding = "API_KEY_KV"
+id = "mcp-keys-cache"
+preview_id = "mcp-keys-cache-preview"
+
+[[kv_namespaces]]
+binding = "AP2_CONFIG"
+id = "ap2-config-store"
+preview_id = "ap2-config-preview"
+
+# D1 Database for persistent data
+[[d1_databases]]
+binding = "DB"
+database_name = "ap2_agent_db"
+database_id = "ap2-agent-mcp-db"
+
+# Queues for async processing (optional)
+[[queues]]
+binding = "MCP_QUEUE"
+queue = "mcp-processing-queue"
+
+# Performance and scaling configuration
+[limits]
+cpu_ms = 50000  # 50 seconds max CPU time
+memory_mb = 512 # Maximum memory for parallel processing
+
+# Analytics and monitoring
+[observability]
+enabled = true
+
+# Scheduled triggers for maintenance
+[triggers]
+crons = ["*/5 * * * *"]  # Every 5 minutes for optimization
+
+# Environment-specific configurations
+[env.production]
+name = "ap2-mcp-optimizer-prod"
+vars = { LOG_LEVEL = "info", CACHE_ENABLED = "true" }
+
+[env.staging]
+name = "ap2-mcp-optimizer-staging"
+vars = { LOG_LEVEL = "debug", CACHE_ENABLED = "false" }
+
+[env.development]
+name = "ap2-mcp-optimizer-dev"
+vars = { LOG_LEVEL = "debug", CACHE_ENABLED = "false" }

@@ -1,0 +1,33 @@
+name = "first-dollar-mission"
+main = "first-dollar-worker.js"
+compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+# KV namespace for earnings tracking
+[[kv_namespaces]]
+binding = "KV"
+id = "first_dollar_kv"
+preview_id = "first_dollar_kv_preview"
+
+# Environment variables
+[vars]
+MISSION_NAME = "First $5 to Cloudflare Pro"
+TARGET_EARNINGS = "5.00"
+MISSION_START = "2024-01-01"
+
+# Durable Objects (optional for future scaling)
+# [[durable_objects.bindings]]
+# name = "JOB_TRACKER"
+# class_name = "JobTracker"
+
+# [build]
+# command = "npm run build"
+
+# Development settings
+[dev]
+port = 8787
+local_protocol = "http"
+
+# Production deployment settings
+[build.upload]
+format = "service-worker"

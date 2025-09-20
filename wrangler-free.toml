@@ -1,0 +1,32 @@
+name = "sina-empire-immediate-money"
+main = "src/legal-revenue-worker.js"
+compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Use existing account
+account_id = "fb05ba58cf4b46f19221514cfb75ab61"
+workers_dev = true
+
+[vars]
+ENVIRONMENT = "production"
+SYSTEM_MODE = "IMMEDIATE_MONEY"
+REVENUE_GOAL_DAILY = "500"
+PAYMENT_MODE = "live"
+
+# Use existing databases
+[[d1_databases]]
+binding = "REVENUE_DB"
+database_name = "sina-empire-revenue-system"
+database_id = "718ce63c-1063-4684-9898-cb6668e25c97"
+
+# Use existing KV
+[[kv_namespaces]]
+binding = "REVENUE_KV"
+id = "1164fb667ae0464898de97d1f563886d"
+
+# Use existing R2
+[[r2_buckets]]
+binding = "R2_BUCKET"
+bucket_name = "sina-empire-files"
+
+# Free plan compatible - no CPU limits
