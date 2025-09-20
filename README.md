@@ -430,3 +430,49 @@ For support and questions:
 ---
 
 **Built with ❤️ for the SINA Empire ecosystem**
+
+## Deployment (quick reference)
+
+This section contains minimal, copy-paste commands for preparing and deploying the Worker using `wrangler-fixed.toml`.
+
+1. Ensure you have `wrangler` v3+ installed and authenticated:
+
+```bash
+npm i -g wrangler
+wrangler login
+```
+
+2. Set required production secrets (do NOT store secrets in the repo):
+
+```bash
+wrangler secret put ADMIN_TOKEN --env production
+wrangler secret put CHANGENOW_API_KEY --env production
+wrangler secret put ALCHEMY_API_KEY --env production
+wrangler secret put CLOUDFLARE_API_TOKEN --env production
+wrangler secret put MONERO_WALLET_JSON --env production
+```
+
+3. Deploy to staging to smoke-test:
+
+```bash
+npx wrangler deploy --config wrangler-fixed.toml --env staging
+```
+
+4. Run smoke tests against the staging URL (replace `<STAGING_URL>`):
+
+```bash
+curl -s <STAGING_URL>/health
+curl -s <STAGING_URL>/api/balance
+curl -s -H "cf-connecting-ip: 8.8.8.8" <STAGING_URL>/api/geo
+curl -s <STAGING_URL>/api/price
+```
+
+5. Deploy to production:
+
+```bash
+npx wrangler deploy --config wrangler-fixed.toml --env production
+```
+
+Notes:
+- `wrangler-fixed.toml` should NOT contain plaintext secrets. The file in the repo has been adjusted to leave `ADMIN_TOKEN` blank and instruct you to set it with `wrangler secret put`.
+- If you want a PR that prepares a `deploy-prep` branch (Option B) with CI checks and a deploy checklist, tell me and I'll create it.
