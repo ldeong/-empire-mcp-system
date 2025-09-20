@@ -1,0 +1,20 @@
+name = "sina-empire-revenue-multiplier"
+main = "src/advanced-worker.js"
+compatibility_date = "2023-10-30"
+compatibility_flags = ["nodejs_compat"]
+
+# KV Namespace for earnings storage
+[[kv_namespaces]]
+binding = "EARNINGS_KV"
+id = "36117b73cef941659257140e7066b5f7"
+
+# Environment variables
+[env.production.vars]
+ENVIRONMENT = "production"
+REVENUE_SYSTEM_VERSION = "v4.0-advanced"
+ANALYTICS_ENABLED = "true"
+MONITORING_REALTIME = "true"
+PERFORMANCE_OPTIMIZATION = "true"
+SECURITY_LEVEL = "maximum"
+RATE_LIMIT_RPM = "6000"
+EDGE_CACHE_TTL = "300"

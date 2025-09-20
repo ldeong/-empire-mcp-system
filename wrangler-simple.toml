@@ -1,0 +1,8 @@
+name = "sina-simple-income"
+main = "src/simple-worker.js"
+compatibility_date = "2023-10-30"
+
+# Just KV storage - no Durable Objects
+[[kv_namespaces]]
+binding = "EARNINGS_KV"
+id = "36117b73cef941659257140e7066b5f7"

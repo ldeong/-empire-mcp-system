@@ -1,0 +1,7 @@
+name = "sina-simple-income"
+main = "src/simple-income.js"
+compatibility_date = "2023-10-30"
+
+# NO Durable Objects, NO complex features, JUST WORKS
+[env.production.vars]
+ENVIRONMENT = "production"
