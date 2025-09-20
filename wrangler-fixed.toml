@@ -309,7 +309,9 @@ crons = ["*/5 * * * *"]  # Every 5 minutes
 [env.production.vars]
 SYSTEM_VERSION = "1.0.1-fixed"
 DEPLOYMENT_DATE = "2025-09-20"
-ADMIN_TOKEN = "EMPIRE_ADMIN_2024_SECURE"
+# ADMIN_TOKEN must be set via `wrangler secret put ADMIN_TOKEN --env production`
+# Do NOT store secrets in this file. Set the admin token with Wrangler before deploy.
+ADMIN_TOKEN = ""
 CLOUDFLARE_PRO_PRICE = "25"
 DAILY_EARNING_TARGET = "5"
 MIN_WITHDRAWAL = "0.1"
