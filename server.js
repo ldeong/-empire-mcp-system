@@ -419,6 +419,6 @@ app.post('/mcp/webhook/register', (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
-  console.log(`Auto-commit integration active`);
-  console.log(`Voice commands: "auto commit", "coding agent", "git status"`);
+  console.log('Auto-commit integration active');
+  console.log('Voice commands: "auto commit", "coding agent", "git status"');
 });

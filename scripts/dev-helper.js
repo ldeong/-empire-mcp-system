@@ -331,7 +331,7 @@ class DevHelper {
             this.log('❌ Failed to recover, continuing monitoring...');
           }
         } else {
-          this.log(`❌ Max recovery attempts reached, continuing monitoring...`);
+          this.log('❌ Max recovery attempts reached, continuing monitoring...');
           this.attempts = 0; // Reset for next failure
         }
       }
@@ -393,33 +393,33 @@ async function main() {
 
   try {
     switch (action.toLowerCase()) {
-      case 'run':
-        const success = await helper.runDevelopmentCycle();
-        process.exit(success ? 0 : 1);
-        break;
+    case 'run':
+      const success = await helper.runDevelopmentCycle();
+      process.exit(success ? 0 : 1);
+      break;
         
-      case 'monitor':
-        await helper.startContinuousMonitoring();
-        break;
+    case 'monitor':
+      await helper.startContinuousMonitoring();
+      break;
         
-      case 'health':
-        const health = await helper.healthCheck();
-        console.log('Health:', JSON.stringify(health, null, 2));
-        process.exit(health.healthy ? 0 : 1);
-        break;
+    case 'health':
+      const health = await helper.healthCheck();
+      console.log('Health:', JSON.stringify(health, null, 2));
+      process.exit(health.healthy ? 0 : 1);
+      break;
         
-      case 'status':
-        const status = await helper.getStatus();
-        console.log('Status:', JSON.stringify(status, null, 2));
-        break;
+    case 'status':
+      const status = await helper.getStatus();
+      console.log('Status:', JSON.stringify(status, null, 2));
+      break;
         
-      case 'install':
-        const installed = await helper.installDependencies();
-        process.exit(installed ? 0 : 1);
-        break;
+    case 'install':
+      const installed = await helper.installDependencies();
+      process.exit(installed ? 0 : 1);
+      break;
         
-      default:
-        console.log(`
+    default:
+      console.log(`
 Usage: node dev-helper.js [command] [options]
 
 Commands:
@@ -439,7 +439,7 @@ Examples:
   node dev-helper.js monitor --health-interval 60000
   node dev-helper.js health
         `);
-        process.exit(1);
+      process.exit(1);
     }
   } catch (error) {
     helper.log(`❌ Fatal error: ${error.message}`);

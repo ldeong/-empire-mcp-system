@@ -257,24 +257,24 @@ async function main() {
     let result;
     
     switch (action.toLowerCase()) {
-      case 'start':
-        result = await controller.start();
-        break;
-      case 'stop':
-        result = await controller.stop();
-        break;
-      case 'restart':
-        result = await controller.restart();
-        break;
-      case 'status':
-        result = await controller.status();
-        break;
-      default:
-        console.log('Usage: node mcp-control.js [start|stop|restart|status]');
-        process.exit(1);
+    case 'start':
+      result = await controller.start();
+      break;
+    case 'stop':
+      result = await controller.stop();
+      break;
+    case 'restart':
+      result = await controller.restart();
+      break;
+    case 'status':
+      result = await controller.status();
+      break;
+    default:
+      console.log('Usage: node mcp-control.js [start|stop|restart|status]');
+      process.exit(1);
     }
 
-    console.log(`\n📊 Result:`, JSON.stringify(result, null, 2));
+    console.log('\n📊 Result:', JSON.stringify(result, null, 2));
     
     if (result.success === false) {
       process.exit(1);

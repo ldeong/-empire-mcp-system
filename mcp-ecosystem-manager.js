@@ -151,7 +151,7 @@ class MCPResilienceManager {
           console.log(`🔄 Switching from ${provider} to ${nextProvider}`);
           provider = nextProvider;
         } else {
-          throw new Error(`All MCP providers are unavailable`);
+          throw new Error('All MCP providers are unavailable');
         }
       }
 
@@ -340,20 +340,20 @@ class VoiceCommandParser {
 
     // Provider-specific parameter extraction
     switch (provider) {
-      case 'github':
-        const repoMatch = command.match(/repo(?:sitory)?\s+["']?([^"'\s]+)["']?/i);
-        if (repoMatch) params.repository = repoMatch[1];
-        break;
+    case 'github':
+      const repoMatch = command.match(/repo(?:sitory)?\s+["']?([^"'\s]+)["']?/i);
+      if (repoMatch) params.repository = repoMatch[1];
+      break;
 
-      case 'asana':
-        const projectMatch = command.match(/project\s+["']?([^"'\s]+)["']?/i);
-        if (projectMatch) params.project = projectMatch[1];
-        break;
+    case 'asana':
+      const projectMatch = command.match(/project\s+["']?([^"'\s]+)["']?/i);
+      if (projectMatch) params.project = projectMatch[1];
+      break;
 
-      case 'cloudflare':
-        const zoneMatch = command.match(/zone\s+["']?([^"'\s]+)["']?/i);
-        if (zoneMatch) params.zone = zoneMatch[1];
-        break;
+    case 'cloudflare':
+      const zoneMatch = command.match(/zone\s+["']?([^"'\s]+)["']?/i);
+      if (zoneMatch) params.zone = zoneMatch[1];
+      break;
     }
 
     return params;
