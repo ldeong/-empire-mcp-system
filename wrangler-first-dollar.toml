@@ -1,0 +1,12 @@
+name = "sina-empire-master"
+main = "first-dollar-worker.js"
+compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Environment variables
+[vars]
+ENVIRONMENT = "master-commander"
+VERSION = "1.0.0"
+SYSTEM_MODE = "CONSOLIDATION"
+REVENUE_GOAL = "50"
+STRATEGY = "single-worker-maximum-efficiency"
